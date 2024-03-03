@@ -1,0 +1,1307 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: author
+    label: Authors
+    folder: cms/author
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Bio
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_picture
+        label: Picture
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Enter alt text for author's photo
+        name: f_alt-text
+        label: Alt-text
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: author
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[author].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: careers
+    label: Careers
+    folder: cms/careers
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Job Detail
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_job-role
+        label: Job location
+        widget: string
+        required: false
+      - hint: ''
+        name: f_job-type
+        label: Job type
+        widget: select
+        required: true
+        options:
+          - label: Full Time
+            value: Full Time
+          - label: Part Time
+            value: Part Time
+          - label: Remote
+            value: Remote
+      - hint: ''
+        name: f_job-description
+        label: Job description
+        widget: text
+        required: false
+      - hint: ''
+        name: f_salary-2
+        label: Salary
+        widget: string
+        required: false
+      - hint: ''
+        name: f_job-details
+        label: Job
+        widget: text
+        required: false
+      - hint: ''
+        name: f_job-requirements
+        label: Job require
+        widget: text
+        required: false
+      - hint: ''
+        name: f_job-responsibilities
+        label: Job response
+        widget: text
+        required: false
+      - hint: ''
+        name: f_job-requirement
+        label: Job Requirement
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_job-responsibility
+        label: Job Responsibility
+        widget: markdown
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: careers
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[careers].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: blogs_news
+    label: Blogs & News
+    folder: cms/blogs-news
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_featured
+        label: Featured?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_author-details
+        label: Author Details
+        widget: relation
+        required: false
+        collection: author
+        value_field: cms/author/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: false
+      - hint: Enter alt text for image here
+        name: f_alt-text-for-image
+        label: Alt-text for image
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: blogs-news
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[blogs-news].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: About us, key: 645f0031'
+            label: Text
+            name: 645f0031
+            widget: string
+          - hint: 'Original text: Services, key: 560f747e'
+            label: Text
+            name: 560f747e
+            widget: string
+          - hint: 'Original text: Projects, key: -37ac8366'
+            label: Text
+            name: '-37ac8366'
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: 'Original text: WhatsApp Us, key: 503a6c0c'
+            label: Text
+            name: 503a6c0c
+            widget: string
+          - hint: 'Original text: We are Dasper!, key: 39fe171c'
+            label: Text
+            name: 39fe171c
+            widget: string
+          - hint: >-
+              Original text: Discover the power of exceptional design and
+              seamless digital experiences at Dasper. As a premier graphic
+              design and website development agency, we're dedicated to crafting
+              captivating visuals and dynamic online solutions tailored to your
+              unique needs., key: 1877c398
+            label: Text
+            name: 1877c398
+            widget: text
+          - hint: 'Original text: Get in Touch, key: -53f399f2'
+            label: Text
+            name: '-53f399f2'
+            widget: string
+          - hint: 'Original text: Expertise and Experience., key: -768b8d14'
+            label: Text
+            name: '-768b8d14'
+            widget: string
+          - hint: 'Original text:  We personify them., key: -67b85559'
+            label: Text
+            name: '-67b85559'
+            widget: string
+          - hint: >-
+              Original text: With years of experience in the digital industry,
+              we have successfully delivered numerous projects across various
+              sectors. Our team stays updated with the latest trends and
+              technologies, ensuring that your business stays ahead of the
+              curve.`, key: -2e94857f
+            label: Text
+            name: '-2e94857f'
+            widget: text
+          - hint: 'Original text: Branding, key: 2572f1b'
+            label: Text
+            name: 2572f1b
+            widget: string
+          - hint: 'Original text: Design & Development, key: 5bc62d5f'
+            label: Text
+            name: 5bc62d5f
+            widget: string
+          - hint: 'Original text: Marketing, key: 3fc9ea06'
+            label: Text
+            name: 3fc9ea06
+            widget: string
+          - hint: >-
+              Original text: Unlock your brand's full potential with our
+              creative solutions., key: -51952634
+            label: Text
+            name: '-51952634'
+            widget: string
+          - hint: 'Original text: At , key: 1022d'
+            label: Text
+            name: 1022d
+            widget: string
+          - hint: 'Original text: Dasper, key: 799669e7'
+            label: Text
+            name: '799669e7'
+            widget: string
+          - hint: >-
+              Original text: , we don't believe in one-size-fits-all solutions.
+              Our expert team of digital strategists works closely with you to
+              understand your unique goals and challenges. We then develop
+              tailor-made strategies that align with your business objectives,
+              ensuring maximum impact and a strong return on investment., key:
+              -6fa65f22
+            label: Text
+            name: '-6fa65f22'
+            widget: text
+          - hint: 'Original text: Customized Solutions, key: -306816c5'
+            label: Text
+            name: '-306816c5'
+            widget: string
+          - hint: >-
+              Original text: We understand that one size does not fit all. Our
+              solutions are tailor-made to suit your unique business needs,
+              ensuring that we deliver results that exceed your expectations. We
+              take the time to understand your business, industry, and target
+              audience, allowing us to create effective strategies that drive
+              success., key: -52eec8a1
+            label: Text
+            name: '-52eec8a1'
+            widget: text
+          - hint: 'Original text: Results-Driven Approach, key: 70c3cc2d'
+            label: Text
+            name: 70c3cc2d
+            widget: string
+          - hint: >-
+              Original text: Your success is our ultimate goal. We are committed
+              to delivering measurable results that impact your bottom line.
+              Through data-driven insights, continuous optimization, and a focus
+              on ROI, we help you achieve your business objectives and grow your
+              online presence., key: -6ae7a54d
+            label: Text
+            name: '-6ae7a54d'
+            widget: text
+          - hint: 'Original text: Customer Satisfaction, key: 4fc73d8e'
+            label: Text
+            name: 4fc73d8e
+            widget: string
+          - hint: >-
+              Original text: We pride ourselves on providing outstanding
+              customer service and support. Our friendly and knowledgeable team
+              is always available to address your concerns, answer your
+              questions, and provide guidance. We strive to ensure that your
+              experience with us is seamless and enjoyable., key: 76cd0509
+            label: Text
+            name: 76cd0509
+            widget: text
+          - hint: >-
+              Original text: Energy of a start-up combined with a dedicated
+              team., key: 73cff7f8
+            label: Text
+            name: 73cff7f8
+            widget: string
+          - hint: >-
+              Original text: At Dasper, we combine the energy and agility of a
+              start-up with a dedicated team of professionals. We understand the
+              excitement and drive that comes with starting a new venture, and
+              we bring that same enthusiasm to every project we undertake., key:
+              -5b4016c7
+            label: Text
+            name: '-5b4016c7'
+            widget: text
+          - hint: 'Original text: What we do?, key: -7b037682'
+            label: Text
+            name: '-7b037682'
+            widget: string
+          - hint: 'Original text: Brand Your Success with Dasper., key: 4706651e'
+            label: Text
+            name: 4706651e
+            widget: string
+          - hint: >-
+              Original text: Don't let your online presence be an afterthought.
+              Partner with Dasper, and let us unleash the power of digital
+              innovation to propel your brand forward. Contact us today to
+              schedule a consultation and discover how we can transform your
+              digital landscape into a thriving success story. Together, let's
+              spur your business to new heights with our , key: -7e4170a8
+            label: Text
+            name: '-7e4170a8'
+            widget: text
+          - hint: 'Original text: Branding, Development & Marketing , key: -5c02b938'
+            label: Text
+            name: '-5c02b938'
+            widget: string
+          - hint: 'Original text: services., key: -b930470'
+            label: Text
+            name: '-b930470'
+            widget: string
+          - hint: 'Original text: Dasper was a dream to work with, key: -6c55ee4'
+            label: Text
+            name: '-6c55ee4'
+            widget: string
+          - hint: >-
+              Original text: Dasper Tech's design service is truly top-notch.,
+              key: 6ece2ab8
+            label: Text
+            name: 6ece2ab8
+            widget: string
+          - hint: >-
+              Original text: Their creativity, attention to detail, and
+              commitment to quality exceeded my expectations., key: 6772b636
+            label: Text
+            name: 6772b636
+            widget: string
+          - hint: 'Original text: Peter Paul Arasu, key: -8a69272'
+            label: Text
+            name: '-8a69272'
+            widget: string
+          - hint: 'Original text: Founder, Emilda Solutions, key: 662f50c5'
+            label: Text
+            name: 662f50c5
+            widget: string
+          - hint: 'Original text: Your go-to , key: 7a3df0d'
+            label: Text
+            name: 7a3df0d
+            widget: string
+          - hint: 'Original text: Digital Agency, key: -3f503cb3'
+            label: Text
+            name: '-3f503cb3'
+            widget: string
+          - hint: 'Original text: Company, key: -64202ba3'
+            label: Text
+            name: '-64202ba3'
+            widget: string
+          - hint: 'Original text: About Us, key: 645efc51'
+            label: Text
+            name: 645efc51
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: WhatsApp, key: 772c5592'
+            label: Text
+            name: 772c5592
+            widget: string
+          - hint: 'Original text: Mail, key: 2479d7'
+            label: Text
+            name: 2479d7
+            widget: string
+          - hint: 'Original text: Socials, key: -164c917a'
+            label: Text
+            name: '-164c917a'
+            widget: string
+          - hint: 'Original text: Behance, key: 559c0b34'
+            label: Text
+            name: 559c0b34
+            widget: string
+          - hint: 'Original text: Dribbble, key: -20e9cf80'
+            label: Text
+            name: '-20e9cf80'
+            widget: string
+          - hint: 'Original text: Instagram, key: 792b2792'
+            label: Text
+            name: 792b2792
+            widget: string
+          - hint: 'Original text: Designed & Developed by , key: 8fbba88'
+            label: Text
+            name: 8fbba88
+            widget: string
+          - hint: 'Original text: Dasper Agency, key: -25319b82'
+            label: Text
+            name: '-25319b82'
+            widget: string
+          - hint: 'Original text: Privacy Policy, key: -3fbde6f6'
+            label: Text
+            name: '-3fbde6f6'
+            widget: string
+          - hint: 'Original text: All Rights Reserved@2024, key: -3358e32'
+            label: Text
+            name: '-3358e32'
+            widget: string
+          - hint: 'Original text: Protected Page, key: -11d4bbff'
+            label: Text
+            name: '-11d4bbff'
+            widget: string
+          - hint: >-
+              Original text: Incorrect password. Please try again., key:
+              -f5c4b5f
+            label: Text
+            name: '-f5c4b5f'
+            widget: string
+          - hint: 'Original text: Page Not Found, key: -40b0787c'
+            label: Text
+            name: '-40b0787c'
+            widget: string
+          - hint: >-
+              Original text: The page you are looking for doesn't exist or has
+              been moved, key: 556d64d8
+            label: Text
+            name: 556d64d8
+            widget: string
+          - hint: 'Original text: Go Home, key: 6b29b517'
+            label: Text
+            name: 6b29b517
+            widget: string
+          - hint: 'Original text: Igniting Digital Innovation., key: -780f5298'
+            label: Text
+            name: '-780f5298'
+            widget: string
+          - hint: >-
+              Original text: We are a creative digital agency dedicated to
+              sparking innovation, igniting brands, and driving exceptional
+              results., key: 5f4af11a
+            label: Text
+            name: 5f4af11a
+            widget: text
+          - hint: 'Original text: Work With Us, key: -62057db7'
+            label: Text
+            name: '-62057db7'
+            widget: string
+          - hint: >-
+              Original text: What sets us apart is our unwavering dedication to
+              delivering results. We take a data-driven approach to everything
+              we do, leveraging insights and analytics to inform our strategies
+              and optimize our efforts. , key: -167c1ba7
+            label: Text
+            name: '-167c1ba7'
+            widget: text
+          - hint: 'Original text: 1000+, key: 2c90bac'
+            label: Text
+            name: 2c90bac
+            widget: string
+          - hint: 'Original text: Cups of coffee, key: -1e082e16'
+            label: Text
+            name: '-1e082e16'
+            widget: string
+          - hint: 'Original text: 10+, key: bdec'
+            label: Text
+            name: bdec
+            widget: string
+          - hint: 'Original text: Clients served, key: -26147b93'
+            label: Text
+            name: '-26147b93'
+            widget: string
+          - hint: 'Original text: 20+, key: c1ad'
+            label: Text
+            name: c1ad
+            widget: string
+          - hint: 'Original text: Branding projects, key: 3c1397df'
+            label: Text
+            name: 3c1397df
+            widget: string
+          - hint: 'Original text: Custom solutions, key: -523983b5'
+            label: Text
+            name: '-523983b5'
+            widget: string
+          - hint: 'Original text: Expertise That Makes a Difference., key: 66b9d7ed'
+            label: Text
+            name: 66b9d7ed
+            widget: string
+          - hint: >-
+              Original text: When you choose Dasper, you choose a partner
+              dedicated to your success. We invest in understanding your
+              business, your target audience, and your unique challenges. We
+              believe in building long-term relationships based on trust,
+              integrity, and shared success. Your success is our success, and we
+              are committed to being there with you every step of the way., key:
+              -211ec084
+            label: Text
+            name: '-211ec084'
+            widget: text
+          - hint: 'Original text: Posted on 27th January 2021, key: -560e2f86'
+            label: Text
+            name: '-560e2f86'
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: All Posts, key: 4b6bc54'
+            label: Text
+            name: 4b6bc54
+            widget: string
+          - hint: 'Original text: Learn More, key: -52bd880f'
+            label: Text
+            name: '-52bd880f'
+            widget: string
+          - hint: >-
+              Original text: We hire people who are very passionate about what
+              they do, key: -253b32c6
+            label: Text
+            name: '-253b32c6'
+            widget: string
+          - hint: >-
+              Original text: Join us on our exciting journey as we strive to
+              innovate, create, and shape the future together., key: -12c735ec
+            label: Text
+            name: '-12c735ec'
+            widget: text
+          - hint: 'Original text: View Positions, key: 5a058caf'
+            label: Text
+            name: 5a058caf
+            widget: string
+          - hint: 'Original text: See our open positions, key: -50193d8b'
+            label: Text
+            name: '-50193d8b'
+            widget: string
+          - hint: 'Original text: Apply Now, key: -45e051c'
+            label: Text
+            name: '-45e051c'
+            widget: string
+          - hint: >-
+              Original text: Have a question ? Let’s get in touch with us., key:
+              -2d7b2947
+            label: Text
+            name: '-2d7b2947'
+            widget: string
+          - hint: >-
+              Original text: Fill up the form and the team will get back to you
+              within 24 hours, key: 112c1967
+            label: Text
+            name: 112c1967
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Job Description, key: 299377d9'
+            label: Text
+            name: 299377d9
+            widget: string
+          - hint: 'Original text: Salary, key: -6cd44a16'
+            label: Text
+            name: '-6cd44a16'
+            widget: string
+          - hint: 'Original text: Details & Requirements, key: -313f4bd8'
+            label: Text
+            name: '-313f4bd8'
+            widget: string
+          - hint: 'Original text: Last modification: 29/05/2021, key: -c42af95'
+            label: Text
+            name: '-c42af95'
+            widget: string
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: >-
+              Original text: At SpurPete Digital Agency, we are committed to
+              protecting the privacy and security of your personal information.
+              This Privacy Policy outlines how we collect, use, disclose, and
+              protect the information you provide to us when you visit our
+              website, engage with our services, or interact with us in any
+              other way. We encourage you to read this policy carefully to
+              understand our practices regarding your personal information.,
+              key: 65bf0da
+            label: Text
+            name: 65bf0da
+            widget: text
+          - hint: >-
+              Original text: We may automatically collect certain information
+              when you visit our website, including your IP address, browser
+              type, referring/exit pages, operating system, and other technical
+              data. We may also use cookies, web beacons, or similar
+              technologies to collect information about your browsing activities
+              on our website., key: 63c8f461
+            label: Text
+            name: 63c8f461
+            widget: text
+          - hint: 'Original text: Use of information, key: 1da2c43c'
+            label: Text
+            name: 1da2c43c
+            widget: string
+          - hint: >-
+              Original text: Any personal information you share will be handled
+              with the utmost care, in compliance with our strict privacy
+              policy. Additionally, we are committed to respecting copyright
+              laws, key: 17141265
+            label: Text
+            name: '17141265'
+            widget: text
+          - hint: >-
+              Original text: and intellectual property rights. All work produced
+              during this project will be subject to appropriate copyright
+              protections., key: 675aef33
+            label: Text
+            name: 675aef33
+            widget: text
+          - hint: 'Original text: Information We Collect, key: 63d0ad6c'
+            label: Text
+            name: 63d0ad6c
+            widget: string
+          - hint: >-
+              Original text: We may use the personal information we collect to
+              provide the services you have requested from us, such as
+              responding to your inquiries, delivering projects, and managing
+              client accounts. We may use and disclose your personal information
+              when required by applicable laws, regulations, legal proceedings,
+              or government requests. We may also use and disclose information
+              to protect our rights, privacy, safety, and property, as well as
+              the rights, privacy, safety, and property of our clients, users,
+              and the public. We implement reasonable security measures to
+              protect the personal information we collect from unauthorized
+              access, use, or disclosure. However, no data transmission over the
+              internet or electronic storage system can be guaranteed to be 100%
+              secure. Therefore, while we strive to protect your personal
+              information, we cannot guarantee its absolute security., key:
+              2329ae1a
+            label: Text
+            name: 2329ae1a
+            widget: text
+          - hint: >-
+              Original text: We serve clients with ground breaking solutions,
+              key: -2d4a1fa9
+            label: Text
+            name: '-2d4a1fa9'
+            widget: string
+          - hint: >-
+              Original text: Let us unleash the power of digital innovation to
+              propel your brand forward., key: -f27f60f
+            label: Text
+            name: '-f27f60f'
+            widget: string
+          - hint: 'Original text: Business strategy, key: -2c7444d'
+            label: Text
+            name: '-2c7444d'
+            widget: string
+          - hint: >-
+              Original text: A solid business strategy is the foundation for
+              sustainable growth and success. Together, we'll craft a
+              comprehensive business strategy that sets you on the path to
+              success., key: -4bc34755
+            label: Text
+            name: '-4bc34755'
+            widget: text
+          - hint: 'Original text: Market Analysis, key: -378461c0'
+            label: Text
+            name: '-378461c0'
+            widget: string
+          - hint: 'Original text: Competitive Positioning, key: 575561c8'
+            label: Text
+            name: 575561c8
+            widget: string
+          - hint: 'Original text: Implementation and Evaluation, key: 786af753'
+            label: Text
+            name: 786af753
+            widget: string
+          - hint: >-
+              Original text: Our team of branding experts is passionate about
+              creating captivating brand identities that resonate with your
+              target audience, leaving a lasting impression. From logo design to
+              brand strategy, we'll help you build a brand that not only
+              reflects your unique story but also connects with your customers
+              on a deeper level. Trust us to brand your success., key: -647bbd26
+            label: Text
+            name: '-647bbd26'
+            widget: text
+          - hint: 'Original text: Web Development, key: 4072162f'
+            label: Text
+            name: 4072162f
+            widget: string
+          - hint: >-
+              Original text: Whether you need a responsive website, an
+              e-commerce platform, or a custom web application, we have the
+              expertise to bring your digital vision to life. Let us develop
+              your website and watch your online presence thrive., key:
+              -4d48b730
+            label: Text
+            name: '-4d48b730'
+            widget: text
+          - hint: 'Original text: Site analytics, key: 6da43e0d'
+            label: Text
+            name: 6da43e0d
+            widget: string
+          - hint: 'Original text: Systems risk assessment, key: -5b17c369'
+            label: Text
+            name: '-5b17c369'
+            widget: string
+          - hint: 'Original text: Front & Back-end solution, key: -3be4a3ed'
+            label: Text
+            name: '-3be4a3ed'
+            widget: string
+          - hint: >-
+              Original text: Our data-driven approach ensures that every
+              marketing campaign is tailored to your specific goals, audience,
+              and industry. From social media marketing and search engine
+              optimization to content creation and paid advertising, we'll help
+              you reach your target audience, increase brand visibility, and
+              drive conversions. Let us unleash the power of marketing and
+              propel your business to new heights., key: -2f127d4
+            label: Text
+            name: '-2f127d4'
+            widget: text
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /about-us/, key: -766f6c3e'
+            label: Link
+            name: '-766f6c3e'
+            widget: string
+          - hint: 'Original link: /services/, key: -32173fbe'
+            label: Link
+            name: '-32173fbe'
+            widget: string
+          - hint: 'Original link: https://www.behance.net/daspertech, key: 4568a2af'
+            label: Link
+            name: 4568a2af
+            widget: string
+          - hint: 'Original link: /contact-us/, key: 6bfbaa95'
+            label: Link
+            name: 6bfbaa95
+            widget: string
+          - hint: 'Original link: http://wa.link/2zohzg, key: 69593a71'
+            label: Link
+            name: 69593a71
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /projects/, key: -5bda445a'
+            label: Link
+            name: '-5bda445a'
+            widget: string
+          - hint: 'Original link: http://wa.link/xo82xx, key: -1fe857ec'
+            label: Link
+            name: '-1fe857ec'
+            widget: string
+          - hint: >-
+              Original link:
+              mailto:daspertech@gmail.com?subject=daspertech%40gmail.com, key:
+              2d818bc7
+            label: Link
+            name: 2d818bc7
+            widget: string
+          - hint: >-
+              Original link: https://dribbble.com/Daspertech/about, key:
+              375a5328
+            label: Link
+            name: 375a5328
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.instagram.com/daspertech?igsh=MzRlODBiNWFlZA==, key:
+              -7ba083ef
+            label: Link
+            name: '-7ba083ef'
+            widget: string
+          - hint: 'Original link: mailto:spurandpete@gmail.com, key: -657f2654'
+            label: Link
+            name: '-657f2654'
+            widget: string
+          - hint: 'Original link: /privacy-policy/, key: -2f934417'
+            label: Link
+            name: '-2f934417'
+            widget: string
+          - hint: 'Original link: /careers/, key: 38288f49'
+            label: Link
+            name: 38288f49
+            widget: string
+          - hint: 'Original link: #vacancies, key: 3ab35196'
+            label: Link
+            name: 3ab35196
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '-267f874e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-d1fd9c5'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3f863773
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-14d5fc65'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-31a6332e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 11b7d2f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2a485a80'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4abef31c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2b1beb3c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7381810f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-34c5ca75'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-11e3ec4e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 739db011
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1cd8d041
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
